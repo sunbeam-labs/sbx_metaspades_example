@@ -1,0 +1,14 @@
+rule all_metaspades:
+    input:
+        expand(str(ASSEMBLY_FP/'metaspades'/'{sample}'),
+	       sample=Samples.keys())
+
+rule run_metaspades:
+    input:
+        r1 = str(QC_FP/'decontam'/'{sample}_1.fastq.gz'),
+        r2 = str(QC_FP/'decontam'/'{sample}_2.fastq.gz')
+    output:
+        str(ASSEMBLY_FP/'metaspades'/'{sample}')
+    shell:
+        "metaspades.py -1 {input.r1} -2 {input.r2} -o {output}"
+
