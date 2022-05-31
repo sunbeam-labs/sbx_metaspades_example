@@ -1,0 +1,5 @@
+name: metaspades_example
+channels:
+  - bioconda
+dependencies:
+  - spades
